@@ -4,51 +4,20 @@
 #' @param id of cbs open data table
 #' @param path of data file, defaults to "<id>/data.csv"
 #' @param ... optional filter statements to select rows of the data,
+#' @param typed Should the data automatically be converted into integer and numeric?
+#' @param verbose show the underlying downloading of the data
 #' @param select optional names of columns to be returned.
 #' @param base_url optionally specify a different server. Useful for
 #' third party data services implementing the same protocal.
-download_data <- function(id, path=file.path(id, "data.csv"), ..., select=NULL,
-                          base_url = CBSOPENDATA){
-  url <- whisker.render("{{BASEURL}}/{{BULK}}/{{id}}/UntypedDataSet?$format=json"
-                        , list( BASEURL = base_url
-                              , BULK = BULK
-                              , id = id
-                        )
-  )
-  url <- paste0(url, get_query(..., select=select))
-  
-  dir.create(dirname(path), showWarnings = FALSE, recursive = TRUE)
-  data_file <- file(path, open = "wt")  
-  
-  # retrieve data
-  message("Retrieving data from table '", id ,"'")
-  url <- URLencode(url)
-  res <- get_json(url) #jsonlite::fromJSON(url)
-  write.table( res$value, 
-               file=data_file, 
-               row.names=FALSE, 
-               na="",
-               sep=","
-             )
-  url <- res$odata.nextLink
-
-  while(!is.null(url)){
-    skip <- gsub(".+skip=(\\w+)", "\\1", url)
-    message("Reading...")
-    res <- get_json(url) #jsonlite::fromJSON(url)
-    message("Writing...")
-    write.table( res$value
-               , file=data_file
-               , row.names=FALSE
-               , col.names = FALSE
-               , na=""
-               , sep=","
-               )
-    url <- res$odata.nextLink
-    #break
-  }
-  close(data_file)
-  message("Done!")
+#' @name download_data-deprecated
+download_data <- function( id, path=file.path(id, "data.csv"), ...
+                         , select=NULL
+                         , typed = FALSE
+                         , verbose = TRUE
+                         , base_url = CBSOPENDATA
+                         ){
+  .Deprecated("cbs_download_data")
+  cbs_download_data(id, path = path, select = select, typed = typed, verbose = verbose, base_url = base_url)
 }
 
 #testing

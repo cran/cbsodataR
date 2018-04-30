@@ -2,11 +2,11 @@
 #' 
 #' Returns a list of all cbs themes. 
 #' @param ... Use this to add a filter to the query e.g. \code{get_themes(ID=10)}.  
-#' @param select \code{character} vector with names of wanted properties. default is all
 #' @param verbose Print extra messages what is happening.
 #' @param cache Should the result be cached?
+#' @param select \code{character} vector with names of wanted properties. default is all
 #' @param base_url optionally specify a different server. Useful for
-#' third party data services implementing the same protocal.
+#' third party data services implementing the same protocol.
 #' @return A \code{data.frame} with various properties of SN/CBS themes.
 #' 
 #' The filter is specified with \code{<column_name> = <values>} in which \code{<values>} is a character vector.
@@ -15,13 +15,13 @@
 #' @examples 
 #' \dontrun{
 #' # get list of all themes
-#' get_themes()
+#' cbs+get_themes()
 #' 
 #' # get list of all dutch themes from the Catalog "CBS"
-#' get_themes(Language="nl", Catalog="CBS")
+#' cbs_get_themes(Language="nl", Catalog="CBS")
 #' }
 #' @importFrom whisker whisker.render
-get_themes <- function(..., select=NULL, verbose = TRUE, cache = FALSE, base_url = CBSOPENDATA){
+cbs_get_themes <- function(..., select=NULL, verbose = TRUE, cache = FALSE, base_url = CBSOPENDATA){
   url <- whisker.render("{{BASEURL}}/{{CATALOG}}/Themes?$format=json"
                        , list( BASEURL = base_url
                              , CATALOG = CATALOG
@@ -36,17 +36,19 @@ get_themes <- function(..., select=NULL, verbose = TRUE, cache = FALSE, base_url
 #' @export
 #' @param ... Use this to add a filter to the query e.g. \code{get_tables_themes(ID=10)}.  
 #' @param select \code{character} vector with names of wanted properties. default is all
+#' @param verbose Print extra messages what is happening.
+#' @param cache Should the result be cached?
 #' @param base_url optionally specify a different server. Useful for
 #' third party data services implementing the same protocal.
 #' @return A \code{data.frame} with various properties of SN/CBS themes.
-get_tables_themes <- function(..., select=NULL, base_url = CBSOPENDATA){
+cbs_get_tables_themes <- function(..., select=NULL, verbose = FALSE, cache = TRUE, base_url = CBSOPENDATA){
   url <- whisker.render("{{BASEURL}}/{{CATALOG}}/Tables_Themes?$format=json"
                         , list( BASEURL = base_url
                                 , CATALOG = CATALOG
                         )
   )
   url <- paste0(url, get_query(..., select=select))  
-  table_themes <- resolve_resource(url, "Retrieving themes from ")
+  table_themes <- resolve_resource(url, "Retrieving themes from ", cache = cache, verbose = verbose)
   table_themes
 }
 

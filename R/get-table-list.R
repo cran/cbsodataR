@@ -26,6 +26,7 @@
 #' View(tables_nl)
 #' }
 get_table_list <- function(..., select=NULL, base_url = CBSOPENDATA){
+  .Deprecated("cbs_get_toc")
   url <- whisker.render("{{BASEURL}}/{{CATALOG}}/Tables?$format=json"
                        , list( BASEURL = base_url
                              , CATALOG = CATALOG
@@ -36,9 +37,3 @@ get_table_list <- function(..., select=NULL, base_url = CBSOPENDATA){
   tables <- resolve_resource(url, "Retrieving tables from")
   tables
 }
-
-
-## testing
-
-# library(dplyr)
-# tables <- get_table_list(Language="nl", select=c("ShortTitle","Summary"))
