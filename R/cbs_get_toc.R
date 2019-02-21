@@ -34,7 +34,7 @@ cbs_get_toc <- function(...
                        , select        = NULL
                        , verbose       = FALSE
                        , cache         = TRUE
-                       , base_url      = CBSOPENDATA
+                       , base_url      = getOption("cbsodataR.base_url", BASE_URL)
                        , include_ID    = FALSE
                        ){
   url <- whisker.render("{{BASEURL}}/{{CATALOG}}/Tables?$format=json"
@@ -47,11 +47,12 @@ cbs_get_toc <- function(...
   tables <- resolve_resource(url, "Retrieving tables from", verbose = verbose, cache = cache)
   class(tables) <- c("tbl_df", "tbl", class(tables))
   if (!include_ID){
-    tables <- tables[, names(tables) != "ID"]
+    tables <- tables[, names(tables) != "ID", drop = FALSE]
   }
   
   if (convert_dates){
     date_cols <- c("Updated","Modified", "MetaDataModified")
+    date_cols <- date_cols[date_cols %in% names(tables)]
     tables[,date_cols] <- lapply(tables[,date_cols], as.POSIXct)
   }
   tables

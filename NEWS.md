@@ -1,3 +1,13 @@
+version 0.3.2
+- Added a new function cbs_get_data_from_link to allow for retrieving data using a link created with the opendata portal. Thanks to Albert Pieters for the suggestion
+- Improved the base_url default value.
+- fixed a bug in cbs_get_data, key columns were not always loaded as character columns (issue #15). Thanks 
+to @VincentKars
+
+version 0.3.1
+- removed httr and changed to jsonlite::read_json. httr gave problems with some Windows configurations.
+- fixed cbs_get_toc with select argument (issue #12). Thanks to Rob van Harrevelt.
+
 version 0.3
 
 - changed api: all (new) functions are prefixed with `cbs_` to have a more clean programming interface. 

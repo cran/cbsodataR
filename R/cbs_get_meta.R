@@ -15,7 +15,7 @@
 cbs_get_meta <- function( id
                       , verbose  = FALSE
                       , cache    = TRUE
-                      , base_url = CBSOPENDATA
+                      , base_url = getOption("cbsodataR.base_url", BASE_URL)
 ){
   url <- whisker.render("{{BASEURL}}/{{API}}/{{id}}"
                         , list( BASEURL = base_url
@@ -23,6 +23,7 @@ cbs_get_meta <- function( id
                                 , id = id
                         )
   )
+  
   meta_top <- resolve_resource( url
                                 , "Retrieving meta data for table '", id, "'"
                                 , verbose = verbose

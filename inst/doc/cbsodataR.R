@@ -22,6 +22,11 @@ cbs_get_data('71509ENG') %>%
   select(1:4) %>%  # demonstration purpose
   head()
 
+## ------------------------------------------------------------------------
+cbs_get_data_from_link("https://opendata.cbs.nl/dataportaal/#/CBS/en/dataset/71509ENG/table?dl=193CB") %>% 
+  select(1:4) %>% 
+  head()
+
 ## ---- get_data, message=FALSE--------------------------------------------
 cbs_get_data('71509ENG') %>%
   cbs_add_label_columns() %>% 
@@ -41,7 +46,7 @@ cbs_get_data('71509ENG') %>%
   head()
 
 ## ---- get_data3, message=FALSE-------------------------------------------
-  cbs_get_data('71509ENG', Periods='2000JJ00') %>% 
+  cbs_get_data('71509ENG', Periods=c('2000JJ00','2001JJ00')) %>% 
   select(1:4) %>% 
   head()
 

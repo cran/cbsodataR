@@ -41,7 +41,7 @@ cbs_get_data <- function( id
                         , add_column_labels = TRUE
                         , dir               = tempdir()
                         , verbose           = FALSE
-                        , base_url          = CBSOPENDATA
+                        , base_url          = getOption("cbsodataR.base_url", BASE_URL)
                         , include_ID        = FALSE
                         ){
   
@@ -54,8 +54,11 @@ cbs_get_data <- function( id
                         , verbose  = verbose
                         , base_url = base_url
                         )
-  
-  data <- read.csv(file.path(dir, "data.csv"), strip.white = TRUE)
+  dimnames <- names(meta)[names(meta) %in% meta$DataProperties$Key]
+  colClasses <- sapply(dimnames, function(x){"character"})
+  data <- read.csv( file.path(dir, "data.csv")
+                  , colClasses = colClasses
+                  , strip.white = TRUE)
   if (!include_ID && is.null(select)){
     data <- data[-1]
   }
