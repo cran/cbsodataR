@@ -1,16 +1,34 @@
 #' Get metadata of a cbs table
 #' 
-#' Retrieve the meta data of a CBS open data table.  Caching (\code{cache=TRUE}) improves
-#' the performance considerably. The meta data of a CBS table is 
-#' @param id internal id of CBS table, can be retrieved with \code{\link{cbs_get_toc}}
+#' Retrieve the meta data of a CBS open data table.  Caching (`cache=TRUE`) improves
+#' the performance considerably. 
+#' 
+#' The meta data of a CBS table is determined by the web api of Statistics 
+#' Netherlands. `cbsodataR` stays close to this API. 
+#' Each cbsodataR object has the following metadata items, 
+#' which are all `data.frame`s :
+#' 
+#' * `$TableInfos`: data.frame with the descriptive publication metadata 
+#'     of the table, such as `Title`, `Description`, `Summary` etc.
+#' * `$DataProperties`: data.frame with the `Title`, `Description`,
+#'     `Unit` etc. of each column in the dataset that is downloaded with 
+#'     [cbs_get_data()].
+#' * `$CategoryGroups`: hierarchical groupings of the code columns.
+#' * `$<code column>`: for each code column a `data.frame` with
+#'   the `Title`, `Key`, `Description` etc. of each code / category
+#'   in that column. e.g. `Perioden` for time codes `c("2019JJ00","2018JJ00")`.
+#' 
+#' 
+#' @param id internal id of CBS table, can be retrieved with [cbs_get_toc()]
 #' @param verbose Print extra messages what is happening.
 #' @param cache should the result be cached? 
 #' @param base_url optionally specify a different server. Useful for
 #' third party data services implementing the same protocol.
-#' @return cbs_table object containing several \code{data.frames} with meta data.  
+#' @return cbs_table object containing several `data.frames` with meta data 
+#' (see details)
 #' @importFrom whisker whisker.render
 #' @importFrom jsonlite fromJSON
-#' 
+#' @family meta data
 #' @export
 cbs_get_meta <- function( id
                       , verbose  = FALSE
@@ -73,4 +91,4 @@ cbs_get_meta_from_dir <- function(dir){
 #cbs_get_meta_from_dir("D:/data/StatLine/00370/")
 
 ### testing
-#meta <- cbs_get_meta("81819NED")
+# meta <- cbs_get_meta("81819NED")

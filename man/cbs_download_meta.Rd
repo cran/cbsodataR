@@ -8,9 +8,9 @@ cbs_download_meta(id, dir = id, ..., verbose = FALSE, cache = FALSE,
   base_url = getOption("cbsodataR.base_url", BASE_URL))
 }
 \arguments{
-\item{id}{Id of CBS open data table (see \code{\link{cbs_get_toc}})}
+\item{id}{Id of CBS open data table (see \code{\link[=cbs_get_toc]{cbs_get_toc()}})}
 
-\item{dir}{Directory in which data should be stored. 
+\item{dir}{Directory in which data should be stored.
 By default it creates a sub directory with the name of the id}
 
 \item{...}{not used}
@@ -28,3 +28,13 @@ meta data object
 \description{
 Dumps the meta data into a directory
 }
+\seealso{
+Other meta data: \code{\link{cbs_add_date_column}},
+  \code{\link{cbs_add_label_columns}},
+  \code{\link{cbs_get_meta}}
+
+Other download: \code{\link{cbs_download_data}},
+  \code{\link{cbs_download_table}}
+}
+\concept{download}
+\concept{meta data}

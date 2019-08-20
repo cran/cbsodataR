@@ -1,17 +1,13 @@
 #' Retrieve a data.frame with requested cbs tables
 #' 
-#' \code{get_table_list} by default a list of all tables and all columns will be retrieved.
-#' You can restrict the query by supplying multiple filter statements or by specifying the
-#' columns that should be returned.
-#' 
-#' @note \code{get_table_list} will cache results, so subsequent calls will be much faster.
+#' This method is deprecated in favor of [cbs_get_toc()].
 #' 
 #' @param ... filter statement to select rows, e.g. Language="nl"
-#' @param select \code{character} columns to be returned, by default all columns
+#' @param select `character` columns to be returned, by default all columns
 #' will be returned.
 #' @param base_url optionally specify a different server. Useful for
 #' third party data services implementing the same protocal.
-#' @return \code{data.frame} with identifiers, titles and descriptions of tables
+#' @return `data.frame` with identifiers, titles and descriptions of tables
 #' @importFrom whisker whisker.render
 #' @importFrom jsonlite fromJSON
 #' @export

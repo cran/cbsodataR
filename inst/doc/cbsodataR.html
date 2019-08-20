@@ -7,12 +7,13 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="author" content="Edwin de Jonge" />
 
-<meta name="date" content="2019-02-21" />
+<meta name="date" content="2019-08-20" />
 
 <title>cbsodataR, all data of Statistics Netherlands (CBS)</title>
 
@@ -96,7 +97,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -291,6 +292,9 @@ code > span.al { color: #ff0000; font-weight: bold; }
 code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
+
+
+
 </head>
 
 <body>
@@ -299,13 +303,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 <h1 class="title toc-ignore">cbsodataR, all data of Statistics Netherlands (CBS)</h1>
-<h4 class="author"><em>Edwin de Jonge</em></h4>
-<h4 class="date"><em>2019-02-21</em></h4>
+<h4 class="author">Edwin de Jonge</h4>
+<h4 class="date">2019-08-20</h4>
 
 
 
 <p><a href="https://www.cbs.nl">Statistics Netherlands (CBS)</a> is the office that produces all official statistics of the Netherlands.</p>
-<p>For long SN has put its data on the web in its online database <a href="https://statline.cbs.nl/Statweb/?LA=en">StatLine</a>. Since 2014 this data base has an open data web API based on the OData protocol. The <em>cbsodataR</em> package allows for retrieving data right into R.</p>
+<p>For long SN has put its data on the web in its online database <a href="https://opendata.cbs.nl/statline#/CBS/en/">StatLine</a>. Since 2014 this data base has an open data web API based on the OData protocol. The <em>cbsodataR</em> package allows for retrieving data right into R.</p>
 <div id="table-of-contents" class="section level2">
 <h2>Table of Contents</h2>
 <p>A list of tables can be retrieved using the <code>cbs_get_toc</code> function.</p>
@@ -316,7 +320,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb1-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">toc <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb1-7" data-line-number="7"><span class="st">  </span><span class="kw">select</span>(Identifier, ShortTitle) </a></code></pre></div>
-<pre><code>## # A tibble: 732 x 2
+<pre><code>## # A tibble: 777 x 2
 ##    Identifier ShortTitle                             
 ##    &lt;chr&gt;      &lt;chr&gt;                                  
 ##  1 80783eng   Agriculture; general farm type, region 
@@ -324,16 +328,16 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ##  3 7100eng    Arable crops; production               
 ##  4 70671ENG   Fruit culture; area fruit orchards     
 ##  5 37738ENG   Vegetables; yield per kind of vegetable
-##  6 71509ENG   Yield apples and pears                 
+##  6 71509ENG   Yield apples and pears, 1997 - 2017    
 ##  7 83981ENG   Livestock manure; key figures          
 ##  8 80274eng   Livestock cattle                       
 ##  9 7373eng    Livestock pigs                         
 ## 10 7425eng    Milk supply and dairy production       
-## # … with 722 more rows</code></pre>
+## # … with 767 more rows</code></pre>
 <p>Using an “Identifier” from <code>cbs_get_toc</code> information on the table can be retrieved with <code>cbs_get_meta</code></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">apples &lt;-<span class="st"> </span><span class="kw">cbs_get_meta</span>(<span class="st">'71509ENG'</span>)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">apples</a></code></pre></div>
-<pre><code>## 71509ENG: 'Yield apples and pears', 2017
+<pre><code>## 71509ENG: 'Yield apples and pears, 1997 - 2017', 2017
 ##   FruitFarmingRegions: 'Fruit farming regions'
 ##   Periods: 'Periods' 
 ## 
@@ -379,7 +383,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>## Executing:
-## cbs_get_data(id = &quot;71509ENG&quot;, FruitFarmingRegions = c(&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;), Periods = c(&quot;1997JJ00&quot;, &quot;2012JJ00&quot;, &quot;2013JJ00&quot;, &quot;2016JJ00&quot;), select = c(&quot;FruitFarmingRegions&quot;, &quot;Periods&quot;, &quot;TotalAppleVarieties_1&quot;, &quot;CoxSOrangePippin_2&quot;, &quot;DelbarestivaleDelcorf_3&quot;, &quot;Elstar_4&quot;, &quot;GoldenDelicious_5&quot;, &quot;Jonagold_6&quot;, &quot;Jonagored_7&quot;, &quot;Junami_8&quot;, &quot;Kanzi_9&quot;, &quot;RodeBoskoopRennetApple_10&quot;, &quot;Rubens_11&quot;, &quot;OtherAppleVarieties_12&quot;, &quot;TotalAppleVarieties_20&quot;, &quot;CoxSOrangePippin_21&quot;, &quot;DelbarestivaleDelcorf_22&quot;, &quot;Elstar_23&quot;, &quot;GoldenDelicious_24&quot;, &quot;Jonagold_25&quot;, &quot;Jonagored_26&quot;, &quot;Junami_27&quot;, &quot;Kanzi_28&quot;, &quot;RodeBoskoopRennetApple_29&quot;, &quot;Rubens_30&quot;, &quot;OtherAppleVarieties_31&quot;))</code></pre>
+## cbs_get_data(id = &quot;71509ENG&quot;, FruitFarmingRegions = c(&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;), Periods = c(&quot;1997JJ00&quot;, &quot;2012JJ00&quot;, &quot;2013JJ00&quot;, &quot;2016JJ00&quot;), select = c(&quot;FruitFarmingRegions&quot;, &quot;Periods&quot;, &quot;TotalAppleVarieties_1&quot;, &quot;CoxSOrangePippin_2&quot;, &quot;DelbarestivaleDelcorf_3&quot;, &quot;Elstar_4&quot;, &quot;GoldenDelicious_5&quot;, &quot;Jonagold_6&quot;, &quot;Jonagored_7&quot;, &quot;Junami_8&quot;, &quot;Kanzi_9&quot;, &quot;RodeBoskoopRennetApple_10&quot;, &quot;Rubens_11&quot;, &quot;OtherAppleVarieties_12&quot;, &quot;TotalAppleVarieties_20&quot;, &quot;CoxSOrangePippin_21&quot;, &quot;DelbarestivaleDelcorf_22&quot;, &quot;Elstar_23&quot;, &quot;GoldenDelicious_24&quot;, &quot;Jonagold_25&quot;, &quot;Jonagored_26&quot;, &quot;Junami_27&quot;, &quot;Kanzi_28&quot;, &quot;RodeBoskoopRennetApple_29&quot;, &quot;Rubens_30&quot;, &quot;OtherAppleVarieties_31&quot;), base_url = &quot;http://opendata.cbs.nl&quot;)</code></pre>
 <pre><code>## # A tibble: 6 x 4
 ##   FruitFarmingRegions Periods  TotalAppleVarieties_1 CoxSOrangePippin_2
 ##   &lt;chr&gt;               &lt;chr&gt;                    &lt;int&gt;              &lt;int&gt;
@@ -459,6 +463,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>Data can also be downloaded explicitly by using <code>cbs_download_table</code></p>
 </div>
 
+
+
+<!-- code folding -->
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

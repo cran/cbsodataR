@@ -7,22 +7,47 @@
 cbs_add_label_columns(x, columns = colnames(x), ...)
 }
 \arguments{
-\item{x}{\code{data.frame} retrieved using \code{\link{cbs_get_data}}.}
+\item{x}{\code{data.frame} retrieved using \code{\link[=cbs_get_data]{cbs_get_data()}}.}
 
 \item{columns}{\code{character} with the names of the columns for which labels will be added}
 
 \item{...}{not used.}
 }
+\value{
+the original data.frame \code{x} with extra label
+columns. (see description)
+}
 \description{
-Adds cbs labels to the dataset that was retrieved using \code{\link{cbs_get_data}}.
-Code columns will be translated into label columns for each of the column that was supplied. By default all
-code columns will be accompagnied with a label column.
+Adds cbs labels to the dataset that was retrieved using \code{\link[=cbs_get_data]{cbs_get_data()}}.
+}
+\details{
+Code columns will be translated into label columns for each of the column
+that was supplied.
+
+By default all code columns will be accompagnied with a label column. The name
+of each label column will be \code{<code_column>_label}.
 }
 \examples{
 \dontrun{
 
 # get data for main (000000) Consumer Price Index (7196ENG) for March 2000, 
- x <- cbs_get_data(id="7196ENG", Periods="2000MM03", CPI="000000")
+ x <- cbs_get_data( id      = "7196ENG"
+                  , Periods = "2000MM03"  # March 2000
+                  , CPI     = "000000"    # main price index
+                  )
  cbs_add_label_columns(x)
 }
 }
+\seealso{
+Other data retrieval: \code{\link{cbs_add_date_column}},
+  \code{\link{cbs_download_data}},
+  \code{\link{cbs_extract_table_id}},
+  \code{\link{cbs_get_data_from_link}},
+  \code{\link{cbs_get_data}}
+
+Other meta data: \code{\link{cbs_add_date_column}},
+  \code{\link{cbs_download_meta}},
+  \code{\link{cbs_get_meta}}
+}
+\concept{data retrieval}
+\concept{meta data}
