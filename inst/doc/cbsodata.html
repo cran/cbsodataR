@@ -13,7 +13,7 @@
 
 <meta name="author" content="Edwin de Jonge" />
 
-<meta name="date" content="2019-08-20" />
+<meta name="date" content="2019-11-05" />
 
 <title>cbsodataR, all data of Statistics Netherlands (CBS)</title>
 
@@ -304,7 +304,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">cbsodataR, all data of Statistics Netherlands (CBS)</h1>
 <h4 class="author">Edwin de Jonge</h4>
-<h4 class="date">2019-08-20</h4>
+<h4 class="date">2019-11-05</h4>
 
 
 
@@ -320,7 +320,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb1-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">toc <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb1-7" data-line-number="7"><span class="st">  </span><span class="kw">select</span>(Identifier, ShortTitle) </a></code></pre></div>
-<pre><code>## # A tibble: 777 x 2
+<pre><code>## # A tibble: 786 x 2
 ##    Identifier ShortTitle                             
 ##    &lt;chr&gt;      &lt;chr&gt;                                  
 ##  1 80783eng   Agriculture; general farm type, region 
@@ -333,7 +333,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ##  8 80274eng   Livestock cattle                       
 ##  9 7373eng    Livestock pigs                         
 ## 10 7425eng    Milk supply and dairy production       
-## # … with 767 more rows</code></pre>
+## # … with 776 more rows</code></pre>
 <p>Using an “Identifier” from <code>cbs_get_toc</code> information on the table can be retrieved with <code>cbs_get_meta</code></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">apples &lt;-<span class="st"> </span><span class="kw">cbs_get_meta</span>(<span class="st">'71509ENG'</span>)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">apples</a></code></pre></div>
@@ -383,8 +383,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>## Executing:
-## cbs_get_data(id = &quot;71509ENG&quot;, FruitFarmingRegions = c(&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;), Periods = c(&quot;1997JJ00&quot;, &quot;2012JJ00&quot;, &quot;2013JJ00&quot;, &quot;2016JJ00&quot;), select = c(&quot;FruitFarmingRegions&quot;, &quot;Periods&quot;, &quot;TotalAppleVarieties_1&quot;, &quot;CoxSOrangePippin_2&quot;, &quot;DelbarestivaleDelcorf_3&quot;, &quot;Elstar_4&quot;, &quot;GoldenDelicious_5&quot;, &quot;Jonagold_6&quot;, &quot;Jonagored_7&quot;, &quot;Junami_8&quot;, &quot;Kanzi_9&quot;, &quot;RodeBoskoopRennetApple_10&quot;, &quot;Rubens_11&quot;, &quot;OtherAppleVarieties_12&quot;, &quot;TotalAppleVarieties_20&quot;, &quot;CoxSOrangePippin_21&quot;, &quot;DelbarestivaleDelcorf_22&quot;, &quot;Elstar_23&quot;, &quot;GoldenDelicious_24&quot;, &quot;Jonagold_25&quot;, &quot;Jonagored_26&quot;, &quot;Junami_27&quot;, &quot;Kanzi_28&quot;, &quot;RodeBoskoopRennetApple_29&quot;, &quot;Rubens_30&quot;, &quot;OtherAppleVarieties_31&quot;), base_url = &quot;http://opendata.cbs.nl&quot;)</code></pre>
-<pre><code>## # A tibble: 6 x 4
+## cbs_get_data(id = &quot;71509ENG&quot;, FruitFarmingRegions = c(&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;), Periods = c(&quot;1997JJ00&quot;, &quot;2012JJ00&quot;, &quot;2013JJ00&quot;, &quot;2016JJ00&quot;), select = c(&quot;FruitFarmingRegions&quot;, &quot;Periods&quot;, &quot;TotalAppleVarieties_1&quot;, &quot;CoxSOrangePippin_2&quot;, &quot;DelbarestivaleDelcorf_3&quot;, &quot;Elstar_4&quot;, &quot;GoldenDelicious_5&quot;, &quot;Jonagold_6&quot;, &quot;Jonagored_7&quot;, &quot;Junami_8&quot;, &quot;Kanzi_9&quot;, &quot;RodeBoskoopRennetApple_10&quot;, &quot;Rubens_11&quot;, &quot;OtherAppleVarieties_12&quot;, &quot;TotalAppleVarieties_20&quot;, &quot;CoxSOrangePippin_21&quot;, &quot;DelbarestivaleDelcorf_22&quot;, &quot;Elstar_23&quot;, &quot;GoldenDelicious_24&quot;, &quot;Jonagold_25&quot;, &quot;Jonagored_26&quot;, &quot;Junami_27&quot;, &quot;Kanzi_28&quot;, &quot;RodeBoskoopRennetApple_29&quot;, &quot;Rubens_30&quot;, &quot;OtherAppleVarieties_31&quot;), base_url = &quot;http://opendata.cbs.nl&quot;)
+
+## # A tibble: 6 x 4
 ##   FruitFarmingRegions Periods  TotalAppleVarieties_1 CoxSOrangePippin_2
 ##   &lt;chr&gt;               &lt;chr&gt;                    &lt;int&gt;              &lt;int&gt;
 ## 1 1                   1997JJ00                   420                 43
@@ -396,10 +397,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="adding-category-labels" class="section level3">
 <h3>Adding category labels</h3>
 <p>The first columns are categorical columns: they contain codes. The labels for these columns can be added with the function <code>cbs_add_label_columns</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">cbs_get_data</span>(<span class="st">'71509ENG'</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">cbs_add_label_columns</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">cbs_get_data</span>(<span class="st">'71509ENG'</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">cbs_add_label_columns</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   FruitFarmingRegions FruitFarmingRegions_label Periods  Periods_label
 ##   &lt;chr&gt;               &lt;fct&gt;                     &lt;chr&gt;    &lt;fct&gt;        
@@ -413,10 +414,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="adding-date-column" class="section level3">
 <h3>Adding Date column</h3>
 <p>The period/time columns of Statistics Netherlands (CBS) contain coded time periods: e.g. 2018JJ00 (i.e. 2018), 2018KW03 (i.e. 2018 Q3), 2016MM04 (i.e. 2016 April). With <code>cbs_add_date_column</code> the time periods will be converted and added to the data:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">cbs_get_data</span>(<span class="st">'71509ENG'</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw">cbs_add_date_column</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">cbs_get_data</span>(<span class="st">'71509ENG'</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">cbs_add_date_column</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   Periods  Periods_Date Periods_freq
 ##   &lt;chr&gt;    &lt;date&gt;       &lt;fct&gt;       
@@ -427,10 +428,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## 5 2001JJ00 2001-01-01   Y           
 ## 6 2002JJ00 2002-01-01   Y</code></pre>
 <p>This can be useful for further time series analysis, but also for displaying. It is also possible to convert the dates to numbers:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">cbs_get_data</span>(<span class="st">'71509ENG'</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw">cbs_add_date_column</span>(<span class="dt">date_type =</span> <span class="st">&quot;numeric&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">cbs_get_data</span>(<span class="st">'71509ENG'</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">cbs_add_date_column</span>(<span class="dt">date_type =</span> <span class="st">&quot;numeric&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   Periods  Periods_numeric Periods_freq
 ##   &lt;chr&gt;              &lt;int&gt; &lt;fct&gt;       
@@ -445,9 +446,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="select-and-filter" class="section level2">
 <h2>Select and filter</h2>
 <p>It is possible restrict the download using filter statements. This may shorten the download time considerably.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">  <span class="kw">cbs_get_data</span>(<span class="st">'71509ENG'</span>, <span class="dt">Periods=</span><span class="kw">c</span>(<span class="st">'2000JJ00'</span>,<span class="st">'2001JJ00'</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">  <span class="kw">cbs_get_data</span>(<span class="st">'71509ENG'</span>, <span class="dt">Periods=</span><span class="kw">c</span>(<span class="st">'2000JJ00'</span>,<span class="st">'2001JJ00'</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   FruitFarmingRegions Periods  TotalAppleVarieties_1 CoxSOrangePippin_2
 ##   &lt;chr&gt;               &lt;chr&gt;                    &lt;int&gt;              &lt;int&gt;

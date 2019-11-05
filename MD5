@@ -1,6 +1,6 @@
-efcc496ff7ca6a7a87675a764a0ead55 *DESCRIPTION
+451812222befdd380f45a2d2db92fd53 *DESCRIPTION
 f7d5be5b81c7d10103e66331b638cfdd *NAMESPACE
-63bad237abfa49128173c3051f48feb0 *NEWS.md
+edc3f8a8d46caabd32518ec1ea80a4e0 *NEWS.md
 f99891211314867f874ec882d8ef3e2b *R/add_column_labels.R
 ee650fd8cf3caa5645c8eae76e5d52cd *R/cache.R
 eb2e9fc2adf6c4b08a3cecf83621d62a *R/cbs-table.R
@@ -32,12 +32,13 @@ e615e44d38ccae94143f2a57dd84d364 *R/dual.R
 e8929ff1479b85bf98af7b19df8cb4b0 *R/resolve.R
 eaa93f1934fc2225d51305ba83709ff2 *R/store_labels.R
 69e07542fc1e53ba0d7ec14a20d8cf57 *R/util.R
-b859dd56e1167ffdb441d4712c196956 *build/vignette.rds
+d857503f0558a6625f7417e3dc2994a8 *build/vignette.rds
 a564919b27f947cebb4c7928a6413ab0 *inst/app/server.R
 1f450cc1b65bc89f6001a5a4ba0bf42e *inst/app/ui.R
-a25cce0dedb8a90652b33693d15cb543 *inst/doc/cbsodataR.R
-eade962612f0dea524cb6a7f91011cac *inst/doc/cbsodataR.Rmd
-4342cfc44b7d01d27625f86076e46b49 *inst/doc/cbsodataR.html
+eade962612f0dea524cb6a7f91011cac *inst/cbsodataR.Rmd
+9332fca369d17693fcafb778fbaa0605 *inst/doc/cbsodata.R
+7181163c6d9f499d86a5f1648838604e *inst/doc/cbsodata.Rmd
+b25d954fbf0d2f24acfb8a23857d136c *inst/doc/cbsodata.html
 ddd733f91bc8b290234c19dbebdaab96 *inst/issues/issue15.R
 78ce90a96a14773b6bfdceffcc2a6ced *inst/iv3.R
 d3137a9f747dc08b4067832ba9da9fe4 *man/cache_clear.Rd
@@ -66,4 +67,5 @@ aa783d7b5e83c6a1d83b1b525ac8f52e *man/get_meta-deprecated.Rd
 3cb5d22c6a993cc071d8b471245541fc *man/get_tables_themes.Rd
 34c8d7178ddc4e2792a23eb5d608227d *man/get_themes.Rd
 703076d668bc2fefa7a915206f3c02df *man/resolve_deeplink.Rd
-eade962612f0dea524cb6a7f91011cac *vignettes/cbsodataR.Rmd
+7181163c6d9f499d86a5f1648838604e *vignettes/cbsodata.Rmd
+731492c5e707cecc4a655b5321c588a1 *vignettes/cbsodataR.md

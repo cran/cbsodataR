@@ -1,7 +1,7 @@
 Package: cbsodataR
 Type: Package
 Title: Statistics Netherlands (CBS) Open Data API Client
-Version: 0.3.4
+Version: 0.3.5
 Authors@R: c(person("Edwin", "de Jonge", email="edwindjonge@gmail.com", role = c("aut","cre")),
     person("Sara", "Houweling", role=c("ctb")))
 Description: The data and meta data from Statistics
@@ -16,9 +16,9 @@ Suggests: knitr, rmarkdown, dplyr, shiny
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 NeedsCompilation: no
-Packaged: 2019-08-20 11:49:00 UTC; edwin
+Packaged: 2019-11-05 15:53:20 UTC; edwin
 Author: Edwin de Jonge [aut, cre],
   Sara Houweling [ctb]
 Maintainer: Edwin de Jonge <edwindjonge@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-08-20 12:30:02 UTC
+Date/Publication: 2019-11-05 17:30:02 UTC
