@@ -1,3 +1,9 @@
+# version 0.4.1
+
+* added extra query operators: `eq`, `has_substring` and `|` to support the query syntax of cbsopendata.
+
+* updated documentation
+
 # version 0.3.5
 
 * fixed an issue with the vignette, which was failing when the webservice was offline

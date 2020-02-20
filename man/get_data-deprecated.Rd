@@ -5,9 +5,14 @@
 \alias{get_data}
 \title{Get data from Statistics Netherlands (CBS)}
 \usage{
-get_data(id, ..., recode = TRUE, use_column_title = recode,
-  dir = tempdir(), base_url = getOption("cbsodataR.base_url",
-  BASE_URL))
+get_data(
+  id,
+  ...,
+  recode = TRUE,
+  use_column_title = recode,
+  dir = tempdir(),
+  base_url = getOption("cbsodataR.base_url", BASE_URL)
+)
 }
 \arguments{
 \item{id}{Identifier of table, can be found in \code{\link[=cbs_get_toc]{cbs_get_toc()}}}
@@ -36,9 +41,17 @@ This method is deprecated in favor of \code{\link[=cbs_get_data]{cbs_get_data()}
 To reduce the download time, optionaly the data can be filtered on category values:
 for large tables (> 100k records) this is a wise thing to do.
 
-The filter is specified with \code{<column_name> = <values>} in which \code{<values>} is a character vector.
-Rows with values that are not part of the character vector are not returned. Note that the values
-have to be raw (un-recoded) values.
+The filter is specified with (see examples below):
+\itemize{
+\item \verb{<column_name> = <values>} in which \verb{<values>} is a character vector.
+Rows with values that are not part of the character vector are not returned.
+\strong{Note that the values have to be values from the \verb{$Key} column of the corresponding meta data. These may contain trailing spaces...}
+\item \verb{<column_name> = has_substring(x)} in which x is a character vector. Rows with values that
+do not have a substring that is in x are not returned. Useful substrings are
+"JJ", "KW", "MM" for Periods (years, quarters, months) and "PV", "CR" and "GM"
+for Regions (provinces, corops, municipalities).
+\item \verb{<column_name> = eq(<values>) | has_substring(x)}, which combines the two statements above.
+}
 
 By default the columns will be converted to their type (\code{typed=TRUE}).
 CBS uses multiple types of missing (unknown, surpressed, not measured, missing): users
@@ -46,20 +59,42 @@ wanting all these nuances can use \code{typed=FALSE} which results in character 
 }
 \examples{
 \dontrun{
+cbs_get_data( id      = "7196ENG"      # table id
+            , Periods = "2000MM03"     # March 2000
+            , CPI     = "000000"       # Category code for total 
+            )
 
-# get data for main (000000) Consumer Price Index (7196ENG) for March 2000, 
- cbs_get_data( id      = "7196ENG"      # table id
-             , Periods = "2000MM03"     # March 2000
-             , CPI     = "000000"       # Category code for total 
-             )
+# useful substrings:
+## Periods: "JJ": years, "KW": quarters, "MM", months
+## Regions: "NL", "PV": provinces, "GM": municipalities
+  
+cbs_get_data( id      = "7196ENG"      # table id
+            , Periods = has_substring("JJ")     # all years
+            , CPI     = "000000"       # Category code for total 
+            )
+
+cbs_get_data( id      = "7196ENG"      # table id
+            , Periods = c("2000MM03","2001MM12")     # March 2000 and Dec 2001
+            , CPI     = "000000"       # Category code for total 
+            )
+
+cbs_get_data( id      = "7196ENG"      # table id
+            , Periods = eq("2000MM01") | has_substring("JJ") # Jan 2000 and all years
+            , CPI     = "000000"       # Category code for total 
+            )
 }
 }
 \seealso{
 \code{\link[=cbs_get_meta]{cbs_get_meta()}}, \code{\link[=cbs_download_data]{cbs_download_data()}}
 
-Other data retrieval: \code{\link{cbs_add_date_column}},
-  \code{\link{cbs_add_label_columns}},
-  \code{\link{cbs_download_data}},
-  \code{\link{cbs_extract_table_id}},
-  \code{\link{cbs_get_data_from_link}}
+Other data retrieval: 
+\code{\link{cbs_add_date_column}()},
+\code{\link{cbs_add_label_columns}()},
+\code{\link{cbs_download_data}()},
+\code{\link{cbs_extract_table_id}()},
+\code{\link{cbs_get_data_from_link}()}
+
+Other query: 
+\code{\link{eq}()},
+\code{\link{has_substring}()}
 }

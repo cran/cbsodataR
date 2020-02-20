@@ -7,9 +7,19 @@
 #' To reduce the download time, optionaly the data can be filtered on category values: 
 #' for large tables (> 100k records) this is a wise thing to do.
 #' 
-#' The filter is specified with `<column_name> = <values>` in which `<values>` is a character vector.
-#' Rows with values that are not part of the character vector are not returned. Note that the values
-#' have to be raw (un-recoded) values.
+#' The filter is specified with (see examples below):
+#' 
+#' - `<column_name> = <values>` in which `<values>` is a character vector.
+#' Rows with values that are not part of the character vector are not returned. 
+#' __Note that the values have to be values from the `$Key` column of the corresponding meta data. These may contain trailing spaces...__
+#' 
+#' - `<column_name> = has_substring(x)` in which x is a character vector. Rows with values that 
+#' do not have a substring that is in x are not returned. Useful substrings are
+#' "JJ", "KW", "MM" for Periods (years, quarters, months) and "PV", "CR" and "GM"
+#' for Regions (provinces, corops, municipalities).
+#' 
+#' - `<column_name> = eq(<values>) | has_substring(x)`, which combines the two statements above.
+#'             
 #' 
 #' By default the columns will be converted to their type (`typed=TRUE`).
 #' CBS uses multiple types of missing (unknown, surpressed, not measured, missing): users
@@ -33,15 +43,8 @@
 #' @export
 #' @seealso [cbs_get_meta()], [cbs_download_data()]
 #' @family data retrieval
-#' @examples 
-#' \dontrun{
-#' 
-#' # get data for main (000000) Consumer Price Index (7196ENG) for March 2000, 
-#'  cbs_get_data( id      = "7196ENG"      # table id
-#'              , Periods = "2000MM03"     # March 2000
-#'              , CPI     = "000000"       # Category code for total 
-#'              )
-#' }
+#' @family query
+#' @example ./example/query.R
 cbs_get_data <- function( id
                         , ...
                         , select            = NULL
