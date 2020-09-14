@@ -7,10 +7,12 @@
 cbs_download_data(
   id,
   path = file.path(id, "data.csv"),
+  catalog = catalog,
   ...,
   select = NULL,
   typed = TRUE,
   verbose = FALSE,
+  show_progress = interactive() && !verbose,
   base_url = getOption("cbsodataR.base_url", BASE_URL)
 )
 }
@@ -19,6 +21,8 @@ cbs_download_data(
 
 \item{path}{of data file, defaults to "id/data.csv"}
 
+\item{catalog}{catalog id, can be retrieved with \code{\link[=cbs_get_datasets]{cbs_get_datasets()}}}
+
 \item{...}{optional filter statements to select rows of the data,}
 
 \item{select}{optional names of columns to be returned.}
@@ -26,6 +30,8 @@ cbs_download_data(
 \item{typed}{Should the data automatically be converted into integer and numeric?}
 
 \item{verbose}{show the underlying downloading of the data}
+
+\item{show_progress}{show a progress bar while downloading.}
 
 \item{base_url}{optionally specify a different server. Useful for
 third party data services implementing the same protocol.}

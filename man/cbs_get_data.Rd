@@ -7,6 +7,7 @@
 cbs_get_data(
   id,
   ...,
+  catalog = "CBS",
   select = NULL,
   typed = TRUE,
   add_column_labels = TRUE,
@@ -20,6 +21,8 @@ cbs_get_data(
 \item{id}{Identifier of table, can be found in \code{\link[=cbs_get_toc]{cbs_get_toc()}}}
 
 \item{...}{optional filter statements, see details.}
+
+\item{catalog}{catalog id, can be retrieved with \code{\link[=cbs_get_datasets]{cbs_get_datasets()}}}
 
 \item{select}{\code{character} optional, columns to select}
 
@@ -90,6 +93,13 @@ cbs_get_data( id      = "7196ENG"      # table id
             , CPI     = "000000"       # Category code for total 
             )
 
+# combine either this
+cbs_get_data( id      = "7196ENG"      # table id
+            , Periods = has_substring("JJ") | "2000MM01" # all years and Jan 2001
+            , CPI     = "000000"       # Category code for total 
+            )
+
+# or this: note the "eq" function
 cbs_get_data( id      = "7196ENG"      # table id
             , Periods = eq("2000MM01") | has_substring("JJ") # Jan 2000 and all years
             , CPI     = "000000"       # Category code for total 

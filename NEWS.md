@@ -1,3 +1,24 @@
+# version 0.5.0
+
+* added `cbs_search` facility, to search for publications containing words.
+
+* removed internal `setwd()` call, fix for issue #28, thx to @jeroenadema 
+
+* added support for other catalogs: 
+
+        - `cbs_get_catalogs` and `cbs_get_datasets`
+        - `cbs_get_data` and `cbs_get_meta` and the like now have a `catalog` argument
+
+# version 0.4.2
+
+* added weeks to cbs_add_date_column, issue #25, thanks to @RichardFromHolland 
+
+# version 0.4.1.9000
+
+* added warnings when filter selection contains invalid keys.
+
+* `<column> = has_substring(<ss>) | "value"` is now allowed.
+
 # version 0.4.1
 
 * added extra query operators: `eq`, `has_substring` and `|` to support the query syntax of cbsopendata.
