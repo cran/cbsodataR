@@ -12,7 +12,7 @@
 
 <meta name="author" content="Edwin de Jonge" />
 
-<meta name="date" content="2020-09-14" />
+<meta name="date" content="2024-01-08" />
 
 <title>cbsodataR, all data of Statistics Netherlands (CBS)</title>
 
@@ -30,6 +30,118 @@ document.addEventListener('DOMContentLoaded', function(e) {
 });
 </script>
 
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -226,68 +338,73 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<h1 class="title toc-ignore">cbsodataR, all data of Statistics Netherlands (CBS)</h1>
+<h1 class="title toc-ignore">cbsodataR, all data of Statistics
+Netherlands (CBS)</h1>
 <h4 class="author">Edwin de Jonge</h4>
-<h4 class="date">2020-09-14</h4>
+<h4 class="date">2024-01-08</h4>
 
 
 
-<p><a href="https://www.cbs.nl">Statistics Netherlands (CBS)</a> is the office that produces all official statistics of the Netherlands.</p>
-<p>For long SN has put its data on the web in its online database <a href="https://opendata.cbs.nl/statline#/CBS/en/">StatLine</a>. Since 2014 this data base has an open data web API based on the OData protocol. The <em>cbsodataR</em> package allows for retrieving data right into R.</p>
+<p><a href="https://www.cbs.nl">Statistics Netherlands (CBS)</a> is the
+office that produces all official statistics of the Netherlands.</p>
+<p>For long SN has put its data on the web in its online database <a href="https://opendata.cbs.nl/statline#/CBS/en/">StatLine</a>. Since
+2014 this data base has an open data web API based on the OData
+protocol. The <em>cbsodataR</em> package allows for retrieving data
+right into R.</p>
 <div id="table-of-contents" class="section level2">
 <h2>Table of Contents</h2>
-<p>A list of tables can be retrieved using the <code>cbs_get_datasets</code> (<code>cbs_get_toc</code>) function.</p>
-<pre><code>library(dplyr) # not needed, but used in examples below
-library(cbsodataR)
-
-datasets &lt;- cbs_get_datasets() 
-
-datasets %&gt;% 
-  filter(Language == &quot;en&quot;) %&gt;% # only English tables
-  select(Identifier, ShortTitle) 
-
-## # A tibble: 828 x 2
+<p>A list of tables can be retrieved using the
+<code>cbs_get_datasets</code> (<code>cbs_get_toc</code>) function.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># not needed, but used in examples below</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(cbsodataR)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>datasets <span class="ot">&lt;-</span> <span class="fu">cbs_get_datasets</span>() </span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>datasets <span class="sc">|&gt;</span> </span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  <span class="fu">filter</span>(Language <span class="sc">==</span> <span class="st">&quot;en&quot;</span>) <span class="sc">|&gt;</span> <span class="co"># only English tables</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  <span class="fu">select</span>(Identifier, ShortTitle) </span></code></pre></div>
+<pre><code>## # A tibble: 937 × 2
 ##    Identifier ShortTitle                             
 ##    &lt;chr&gt;      &lt;chr&gt;                                  
 ##  1 80783eng   Agriculture; general farm type, region 
 ##  2 80784eng   Agriculture; labour force, region      
-##  3 7100eng    Arable crops; production               
-##  4 70671ENG   Fruit culture; area fruit orchards     
-##  5 37738ENG   Vegetables; yield per kind of vegetable
-##  6 71509ENG   Yield apples and pears, 1997 - 2017    
-##  7 83981ENG   Livestock manure; key figures          
-##  8 80274eng   Livestock cattle                       
-##  9 7373eng    Livestock pigs                         
-## 10 7425eng    Milk supply and dairy production       
-## # … with 818 more rows</code></pre>
+##  3 85636ENG   Arable crops; production               
+##  4 37738ENG   Vegetables; yield per kind of vegetable
+##  5 83981ENG   Livestock manure; key figures          
+##  6 84952ENG   Livestock                              
+##  7 7425eng    Milk supply and dairy production       
+##  8 84312ENG   Caribbean NL; students MBO             
+##  9 84732ENG   Caribbean NL; pupils and students      
+## 10 81154eng   Caribbean NL; electricity and water    
+## # ℹ 927 more rows</code></pre>
 </div>
 <div id="search-for-tables" class="section level2">
 <h2>Search for tables</h2>
-<p>Tables can be searched for using the <code>cbs_search</code> function.</p>
-<pre><code>toc_apples &lt;- cbs_search(c(&quot;elstar&quot;, &quot;apple&quot;), language = &quot;en&quot;)
-toc_apples[, c(&quot;Identifier&quot;, &quot;ShortTitle&quot;, &quot;score&quot;)]
-
-## # A tibble: 1 x 3
+<p>Tables can be searched for using the <code>cbs_search</code>
+function.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>toc_apples <span class="ot">&lt;-</span> <span class="fu">cbs_search</span>(<span class="fu">c</span>(<span class="st">&quot;elstar&quot;</span>, <span class="st">&quot;apple&quot;</span>), <span class="at">language =</span> <span class="st">&quot;en&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>toc_apples[, <span class="fu">c</span>(<span class="st">&quot;Identifier&quot;</span>, <span class="st">&quot;ShortTitle&quot;</span>, <span class="st">&quot;score&quot;</span>)]</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 3
 ##   Identifier ShortTitle                          score
 ##   &lt;chr&gt;      &lt;chr&gt;                               &lt;dbl&gt;
-## 1 71509ENG   Yield apples and pears, 1997 - 2017  14.5</code></pre>
+## 1 71509ENG   Yield apples and pears, 1997 - 2017  2.62</code></pre>
 </div>
 <div id="other-catalogs" class="section level2">
 <h2>Other catalogs</h2>
 <p>Other catalogs with data are available:</p>
-<pre><code>catalogs &lt;- cbs_get_catalogs()
-catalogs$Identifier
-
-##  [1] &quot;CBS&quot;      &quot;MKB&quot;      &quot;IV3&quot;      &quot;MLZ&quot;      &quot;JM&quot;       &quot;RIVM&quot;    
-##  [7] &quot;Politie&quot;  &quot;MVstat&quot;   &quot;AZW&quot;      &quot;InterReg&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>catalogs <span class="ot">&lt;-</span> <span class="fu">cbs_get_catalogs</span>()</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>catalogs<span class="sc">$</span>Identifier</span></code></pre></div>
+<pre><code>##  [1] &quot;CBS&quot;      &quot;MKB&quot;      &quot;IV3&quot;      &quot;MLZ&quot;      &quot;JM&quot;       &quot;RIVM&quot;    
+##  [7] &quot;Politie&quot;  &quot;MVstat&quot;   &quot;AZW&quot;      &quot;InterReg&quot; &quot;SXstat&quot;</code></pre>
 </div>
 <div id="metadata" class="section level2">
 <h2>Metadata</h2>
-<p>Using an “Identifier” from <code>cbs_get_datasets</code> or <code>cbs_search</code> information on the table can be retrieved with <code>cbs_get_meta</code></p>
-<pre><code>apples &lt;- cbs_get_meta(&#39;71509ENG&#39;)
-apples
-
-## 71509ENG: &#39;Yield apples and pears, 1997 - 2017&#39;, 2017
+<p>Using an “Identifier” from <code>cbs_get_datasets</code> or
+<code>cbs_search</code> information on the table can be retrieved with
+<code>cbs_get_meta</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>apples <span class="ot">&lt;-</span> <span class="fu">cbs_get_meta</span>(<span class="st">&#39;71509ENG&#39;</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>apples</span></code></pre></div>
+<pre><code>## 71509ENG: &#39;Yield apples and pears, 1997 - 2017&#39;, 2017
 ##   FruitFarmingRegions: &#39;Fruit farming regions&#39;
 ##   Periods: &#39;Periods&#39; 
 ## 
@@ -305,20 +422,22 @@ apples
 ## &quot;TotalPearVarieties_32&quot;, &quot;Conference_34&quot;, &quot;DoyenneDuComice_35&quot;, 
 ## &quot;CookingPears_36&quot;, &quot;TriompheDeVienne_37&quot;, &quot;OtherPearVarieties_38&quot;
 ## ))</code></pre>
-<p>The meta object contains all metadata properties of cbsodata (see the <a href="https://www.cbs.nl/-/media/_pdf/2017/13/handleiding-cbs-open-data-services.pdf?la=nl-nl">original documentation</a>) in the form of data.frames. Each data.frame describes properties of the SN table.</p>
-<pre><code>names(apples)
-
-## [1] &quot;TableInfos&quot;          &quot;DataProperties&quot;      &quot;CategoryGroups&quot;     
+<p>The meta object contains all metadata properties of cbsodata (see the
+<a href="https://www.cbs.nl/-/media/_pdf/2017/13/handleiding-cbs-open-data-services.pdf?la=nl-nl">original
+documentation</a>) in the form of data.frames. Each data.frame describes
+properties of the SN table.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">names</span>(apples)</span></code></pre></div>
+<pre><code>## [1] &quot;TableInfos&quot;          &quot;DataProperties&quot;      &quot;CategoryGroups&quot;     
 ## [4] &quot;FruitFarmingRegions&quot; &quot;Periods&quot;</code></pre>
 </div>
 <div id="data-download" class="section level2">
 <h2>Data download</h2>
-<p>With <code>cbs_get_data</code> data can be retrieved. By default all data for this table will be downloaded in a temporary directory.</p>
-<pre><code>cbs_get_data(&#39;71509ENG&#39;) %&gt;% 
-  select(1:4) %&gt;%  # demonstration purpose
-  head()
-
-## # A tibble: 6 x 4
+<p>With <code>cbs_get_data</code> data can be retrieved. By default all
+data for this table will be downloaded in a temporary directory.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">cbs_get_data</span>(<span class="st">&#39;71509ENG&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">|&gt;</span>  <span class="co"># demonstration purpose</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
 ##   FruitFarmingRegions Periods  TotalAppleVarieties_1 CoxSOrangePippin_2
 ##   &lt;chr&gt;               &lt;chr&gt;                    &lt;int&gt;              &lt;int&gt;
 ## 1 1                   1997JJ00                   420                 43
@@ -330,15 +449,18 @@ apples
 </div>
 <div id="data-download-from-a-link" class="section level2">
 <h2>Data download from a link</h2>
-<p>The opendata portal of CBS (<a href="https://opendata.cbs.nl/dataportaal/#/CBS/en" class="uri">https://opendata.cbs.nl/dataportaal/#/CBS/en</a>) allows for finding a table and making a selection within this table manually. Such a selection can be stored in a hyperlink (click the “share” button). This link can also be used with <code>cbsodataR</code> using the <code>cbs_get_data_from_link</code> function.</p>
-<pre><code>cbs_get_data_from_link(&quot;https://opendata.cbs.nl/dataportaal/#/CBS/en/dataset/71509ENG/table?dl=193CB&quot;) %&gt;% 
-  select(1:4) %&gt;% 
-  head()
-
-## Executing:
+<p>The opendata portal of CBS (<a href="https://opendata.cbs.nl/dataportaal/#/CBS/en" class="uri">https://opendata.cbs.nl/dataportaal/#/CBS/en</a>) allows for
+finding a table and making a selection within this table manually. Such
+a selection can be stored in a hyperlink (click the “share” button).
+This link can also be used with <code>cbsodataR</code> using the
+<code>cbs_get_data_from_link</code> function.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">cbs_get_data_from_link</span>(<span class="st">&quot;https://opendata.cbs.nl/dataportaal/#/CBS/en/dataset/71509ENG/table?dl=193CB&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## Executing:
 ## cbs_get_data(id = &quot;71509ENG&quot;, FruitFarmingRegions = c(&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;), Periods = c(&quot;1997JJ00&quot;, &quot;2012JJ00&quot;, &quot;2013JJ00&quot;, &quot;2016JJ00&quot;), select = c(&quot;FruitFarmingRegions&quot;, &quot;Periods&quot;, &quot;TotalAppleVarieties_1&quot;, &quot;CoxSOrangePippin_2&quot;, &quot;DelbarestivaleDelcorf_3&quot;, &quot;Elstar_4&quot;, &quot;GoldenDelicious_5&quot;, &quot;Jonagold_6&quot;, &quot;Jonagored_7&quot;, &quot;Junami_8&quot;, &quot;Kanzi_9&quot;, &quot;RodeBoskoopRennetApple_10&quot;, &quot;Rubens_11&quot;, &quot;OtherAppleVarieties_12&quot;, &quot;TotalAppleVarieties_20&quot;, &quot;CoxSOrangePippin_21&quot;, &quot;DelbarestivaleDelcorf_22&quot;, &quot;Elstar_23&quot;, &quot;GoldenDelicious_24&quot;, &quot;Jonagold_25&quot;, &quot;Jonagored_26&quot;, &quot;Junami_27&quot;, &quot;Kanzi_28&quot;, &quot;RodeBoskoopRennetApple_29&quot;, &quot;Rubens_30&quot;, &quot;OtherAppleVarieties_31&quot;), base_url = &quot;http://opendata.cbs.nl&quot;)
 
-## # A tibble: 6 x 4
+## # A tibble: 6 × 4
 ##   FruitFarmingRegions Periods  TotalAppleVarieties_1 CoxSOrangePippin_2
 ##   &lt;chr&gt;               &lt;chr&gt;                    &lt;int&gt;              &lt;int&gt;
 ## 1 1                   1997JJ00                   420                 43
@@ -349,13 +471,14 @@ apples
 ## 6 2                   2012JJ00                    34                  0</code></pre>
 <div id="adding-category-labels" class="section level3">
 <h3>Adding category labels</h3>
-<p>The first columns are categorical columns: they contain codes. The labels for these columns can be added with the function <code>cbs_add_label_columns</code>.</p>
-<pre><code>cbs_get_data(&#39;71509ENG&#39;) %&gt;%
-  cbs_add_label_columns() %&gt;% 
-  select(1:4) %&gt;% 
-  head()
-
-## # A tibble: 6 x 4
+<p>The first columns are categorical columns: they contain codes. The
+labels for these columns can be added with the function
+<code>cbs_add_label_columns</code>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">cbs_get_data</span>(<span class="st">&#39;71509ENG&#39;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="fu">cbs_add_label_columns</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
 ##   FruitFarmingRegions FruitFarmingRegions_label Periods  Periods_label
 ##   &lt;chr&gt;               &lt;fct&gt;                     &lt;chr&gt;    &lt;fct&gt;        
 ## 1 1                   Total Netherlands         1997JJ00 1997         
@@ -367,13 +490,15 @@ apples
 </div>
 <div id="adding-date-column" class="section level3">
 <h3>Adding Date column</h3>
-<p>The period/time columns of Statistics Netherlands (CBS) contain coded time periods: e.g. 2018JJ00 (i.e. 2018), 2018KW03 (i.e. 2018 Q3), 2016MM04 (i.e. 2016 April). With <code>cbs_add_date_column</code> the time periods will be converted and added to the data:</p>
-<pre><code>cbs_get_data(&#39;71509ENG&#39;) %&gt;%
-  cbs_add_date_column() %&gt;% 
-  select(2:4) %&gt;% 
-  head()
-
-## # A tibble: 6 x 3
+<p>The period/time columns of Statistics Netherlands (CBS) contain coded
+time periods: e.g. 2018JJ00 (i.e. 2018), 2018KW03 (i.e. 2018 Q3),
+2016MM04 (i.e. 2016 April). With <code>cbs_add_date_column</code> the
+time periods will be converted and added to the data:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">cbs_get_data</span>(<span class="st">&#39;71509ENG&#39;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="fu">cbs_add_date_column</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
 ##   Periods  Periods_Date Periods_freq
 ##   &lt;chr&gt;    &lt;date&gt;       &lt;fct&gt;       
 ## 1 1997JJ00 1997-01-01   Y           
@@ -382,13 +507,13 @@ apples
 ## 4 2000JJ00 2000-01-01   Y           
 ## 5 2001JJ00 2001-01-01   Y           
 ## 6 2002JJ00 2002-01-01   Y</code></pre>
-<p>This can be useful for further time series analysis, but also for displaying. It is also possible to convert the dates to numbers:</p>
-<pre><code>cbs_get_data(&#39;71509ENG&#39;) %&gt;%
-  cbs_add_date_column(date_type = &quot;numeric&quot;) %&gt;% 
-  select(2:4) %&gt;% 
-  head()
-
-## # A tibble: 6 x 3
+<p>This can be useful for further time series analysis, but also for
+displaying. It is also possible to convert the dates to numbers:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">cbs_get_data</span>(<span class="st">&#39;71509ENG&#39;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>  <span class="fu">cbs_add_date_column</span>(<span class="at">date_type =</span> <span class="st">&quot;numeric&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
 ##   Periods  Periods_numeric Periods_freq
 ##   &lt;chr&gt;              &lt;int&gt; &lt;fct&gt;       
 ## 1 1997JJ00            1997 Y           
@@ -400,102 +525,105 @@ apples
 </div>
 </div>
 <div id="select-and-filter" class="section level2">
-<h2>Select and filter`</h2>
-<p>It is possible restrict the download using filter statements. This may shorten the download time considerably.</p>
+<h2>Select and filter</h2>
+<p>It is possible restrict the download using filter statements. This
+may shorten the download time considerably.</p>
 <div id="filter" class="section level3">
 <h3>Filter</h3>
-<p>Filter statements for the columns can be used to restrict the download. Note the following:</p>
+<p>Filter statements for the columns can be used to restrict the
+download. Note the following:</p>
 <ul>
-<li>To filter you will need to use the values found in the <code>$Key</code> column in the <code>cbs_get_meta</code> objects. e.g. for year 2020, the code is “2020JJ00”.</li>
+<li>To filter you will need to use the values found in the
+<code>$Key</code> column in the <code>cbs_get_meta</code> objects.
+e.g. for year 2020, the code is “2020JJ00”.</li>
 </ul>
-<!-- -->
-<pre><code>apples &lt;- cbs_get_meta(&#39;71509ENG&#39;)
-names(apples)
-
-## [1] &quot;TableInfos&quot;          &quot;DataProperties&quot;      &quot;CategoryGroups&quot;     
-## [4] &quot;FruitFarmingRegions&quot; &quot;Periods&quot;
-
-# meta data for column Periods
-head(apples$Periods[,1:2])
-
-##        Key Title
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>apples <span class="ot">&lt;-</span> <span class="fu">cbs_get_meta</span>(<span class="st">&#39;71509ENG&#39;</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">names</span>(apples)</span></code></pre></div>
+<pre><code>## [1] &quot;TableInfos&quot;          &quot;DataProperties&quot;      &quot;CategoryGroups&quot;     
+## [4] &quot;FruitFarmingRegions&quot; &quot;Periods&quot;</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># meta data for column Periods</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">head</span>(apples<span class="sc">$</span>Periods[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span></code></pre></div>
+<pre><code>##        Key Title
 ## 1 1997JJ00  1997
 ## 2 1998JJ00  1998
 ## 3 1999JJ00  1999
 ## 4 2000JJ00  2000
 ## 5 2001JJ00  2001
-## 6 2002JJ00  2002
-
-#meta data for column FruitFarmingRegions
-head(apples$FruitFarmingRegions[,1:2 ])
-
-##   Key             Title
+## 6 2002JJ00  2002</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co">#meta data for column FruitFarmingRegions</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">head</span>(apples<span class="sc">$</span>FruitFarmingRegions[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> ])</span></code></pre></div>
+<pre><code>##   Key             Title
 ## 1   1 Total Netherlands
 ## 2   2      Region North
 ## 3   4       Region West
 ## 4   3    Region Central
 ## 5   5      Region South</code></pre>
 <ul>
-<li>To filter for values in a column add <code>&lt;column_name&gt; = values</code> to <code>cbs_get_data</code> e.g. <code>Periods = c(&quot;2019JJ00&quot;, &quot;2020JJ0&quot;)</code></li>
+<li>To filter for values in a column add
+<code>&lt;column_name&gt; = values</code> to <code>cbs_get_data</code>
+e.g. <code>Periods = c(&quot;2019JJ00&quot;, &quot;2020JJ0&quot;)</code></li>
 </ul>
-<!-- -->
-<pre><code>  cbs_get_data( &#39;71509ENG&#39;
-              , Periods=c(&#39;2000JJ00&#39;,&#39;2001JJ00&#39;) # selection on Periods column
-              , FruitFarmingRegions = &quot;1&quot; # selection on FruitFarmingRegions
-              #
-              # restrict the columns to the following as found in
-              # apples$DataProperties with &quot;select&quot;
-              , select = c(&quot;FruitFarmingRegions&quot;, &quot;Periods&quot;, &quot;TotalAppleVarieties_1&quot;)  
-              ) %&gt;% 
-  cbs_add_label_columns()
-
-## # A tibble: 2 x 5
-##   FruitFarmingRegi… FruitFarmingRegion… Periods  Periods_label TotalAppleVariet…
-##   &lt;chr&gt;             &lt;fct&gt;               &lt;chr&gt;    &lt;fct&gt;                     &lt;int&gt;
-## 1 1                 Total Netherlands   2000JJ00 2000                        461
-## 2 1                 Total Netherlands   2001JJ00 2001                        408</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>  <span class="fu">cbs_get_data</span>( <span class="st">&#39;71509ENG&#39;</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>              , <span class="at">Periods=</span><span class="fu">c</span>(<span class="st">&#39;2000JJ00&#39;</span>,<span class="st">&#39;2001JJ00&#39;</span>) <span class="co"># selection on Periods column</span></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>              , <span class="at">FruitFarmingRegions =</span> <span class="st">&quot;1&quot;</span> <span class="co"># selection on FruitFarmingRegions</span></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>              <span class="co">#</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>              <span class="co"># restrict the columns to the following as found in</span></span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a>              <span class="co"># apples$DataProperties with &quot;select&quot;</span></span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a>              , <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;FruitFarmingRegions&quot;</span>, <span class="st">&quot;Periods&quot;</span>, <span class="st">&quot;TotalAppleVarieties_1&quot;</span>)  </span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a>              ) <span class="sc">|&gt;</span> </span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a>  <span class="fu">cbs_add_label_columns</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
+##   FruitFarmingRegions FruitFarmingRegions_label Periods  Periods_label
+##   &lt;chr&gt;               &lt;fct&gt;                     &lt;chr&gt;    &lt;fct&gt;        
+## 1 1                   Total Netherlands         2000JJ00 2000         
+## 2 1                   Total Netherlands         2001JJ00 2001         
+## # ℹ 1 more variable: TotalAppleVarieties_1 &lt;int&gt;</code></pre>
 <ul>
-<li>To filter for values in a column that have a substring e.g. “JJ” you can use <code>&lt;column_name&gt; = has_substring(&lt;substring&gt;)</code> to <code>cbs_get_data</code> e.g. <code>Periods = has_substring(&quot;KW&quot;)</code></li>
+<li>To filter for values in a column that have a substring e.g. “JJ” you
+can use
+<code>&lt;column_name&gt; = has_substring(&lt;substring&gt;)</code> to
+<code>cbs_get_data</code>
+e.g. <code>Periods = has_substring(&quot;KW&quot;)</code></li>
 </ul>
-<!-- -->
-<pre><code>  cbs_get_data( &#39;71509ENG&#39;
-              , Periods = has_substring(&#39;2000&#39;) # selection on Periods column
-              , FruitFarmingRegions = &quot;1&quot; # selection on FruitFarmingRegions
-              #
-              # restrict the columns to the following as found in
-              # cbs_get_meta(&quot;71509ENG&quot;)$DataProperties with &quot;select&quot;
-              , select = c(&quot;FruitFarmingRegions&quot;, &quot;Periods&quot;, &quot;TotalAppleVarieties_1&quot;)  
-              ) %&gt;% 
-    cbs_add_label_columns()
-
-## # A tibble: 1 x 5
-##   FruitFarmingRegi… FruitFarmingRegion… Periods  Periods_label TotalAppleVariet…
-##   &lt;chr&gt;             &lt;fct&gt;               &lt;chr&gt;    &lt;fct&gt;                     &lt;int&gt;
-## 1 1                 Total Netherlands   2000JJ00 2000                        461</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>  <span class="fu">cbs_get_data</span>( <span class="st">&#39;71509ENG&#39;</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>              , <span class="at">Periods =</span> <span class="fu">has_substring</span>(<span class="st">&#39;2000&#39;</span>) <span class="co"># selection on Periods column</span></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>              , <span class="at">FruitFarmingRegions =</span> <span class="st">&quot;1&quot;</span> <span class="co"># selection on FruitFarmingRegions</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>              <span class="co">#</span></span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>              <span class="co"># restrict the columns to the following as found in</span></span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>              <span class="co"># cbs_get_meta(&quot;71509ENG&quot;)$DataProperties with &quot;select&quot;</span></span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a>              , <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;FruitFarmingRegions&quot;</span>, <span class="st">&quot;Periods&quot;</span>, <span class="st">&quot;TotalAppleVarieties_1&quot;</span>)  </span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a>              ) <span class="sc">|&gt;</span> </span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a>    <span class="fu">cbs_add_label_columns</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 5
+##   FruitFarmingRegions FruitFarmingRegions_label Periods  Periods_label
+##   &lt;chr&gt;               &lt;fct&gt;                     &lt;chr&gt;    &lt;fct&gt;        
+## 1 1                   Total Netherlands         2000JJ00 2000         
+## # ℹ 1 more variable: TotalAppleVarieties_1 &lt;int&gt;</code></pre>
 <ul>
-<li>To combine values and substring use the “|” operator: <code>Periods = eq(&quot;2020JJ00&quot;) | has_substring(&quot;KW&quot;)</code></li>
+<li>To combine values and substring use the “|” operator:
+<code>Periods = eq(&quot;2020JJ00&quot;) | has_substring(&quot;KW&quot;)</code></li>
 </ul>
-<!-- -->
-<pre><code>  cbs_get_data( &#39;71509ENG&#39;
-              , Periods = eq(&quot;2010JJ00&quot;) | has_substring(&#39;2000&#39;) # selection on Periods column
-              , FruitFarmingRegions = &quot;1&quot; # selection on FruitFarmingRegions
-              #
-              # restrict the columns to the following as found in
-              # cbs_get_meta(&quot;71509ENG&quot;)$DataProperties with &quot;select&quot;
-              , select = c(&quot;FruitFarmingRegions&quot;, &quot;Periods&quot;, &quot;TotalAppleVarieties_1&quot;)  
-              ) %&gt;% 
-    cbs_add_label_columns()
-
-## # A tibble: 2 x 5
-##   FruitFarmingRegi… FruitFarmingRegion… Periods  Periods_label TotalAppleVariet…
-##   &lt;chr&gt;             &lt;fct&gt;               &lt;chr&gt;    &lt;fct&gt;                     &lt;int&gt;
-## 1 1                 Total Netherlands   2000JJ00 2000                        461
-## 2 1                 Total Netherlands   2010JJ00 2010                        334</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>  <span class="fu">cbs_get_data</span>( <span class="st">&#39;71509ENG&#39;</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>              , <span class="at">Periods =</span> <span class="fu">eq</span>(<span class="st">&quot;2010JJ00&quot;</span>) <span class="sc">|</span> <span class="fu">has_substring</span>(<span class="st">&#39;2000&#39;</span>) <span class="co"># selection on Periods column</span></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>              , <span class="at">FruitFarmingRegions =</span> <span class="st">&quot;1&quot;</span> <span class="co"># selection on FruitFarmingRegions</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>              <span class="co">#</span></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>              <span class="co"># restrict the columns to the following as found in</span></span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>              <span class="co"># cbs_get_meta(&quot;71509ENG&quot;)$DataProperties with &quot;select&quot;</span></span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a>              , <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;FruitFarmingRegions&quot;</span>, <span class="st">&quot;Periods&quot;</span>, <span class="st">&quot;TotalAppleVarieties_1&quot;</span>)  </span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a>              ) <span class="sc">|&gt;</span> </span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a>    <span class="fu">cbs_add_label_columns</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
+##   FruitFarmingRegions FruitFarmingRegions_label Periods  Periods_label
+##   &lt;chr&gt;               &lt;fct&gt;                     &lt;chr&gt;    &lt;fct&gt;        
+## 1 1                   Total Netherlands         2000JJ00 2000         
+## 2 1                   Total Netherlands         2010JJ00 2010         
+## # ℹ 1 more variable: TotalAppleVarieties_1 &lt;int&gt;</code></pre>
 </div>
 </div>
 <div id="download-data" class="section level1">
 <h1>Download data</h1>
-<p>Data can also be downloaded explicitly by using <code>cbs_download_table</code></p>
+<p>Data can also be downloaded explicitly by using
+<code>cbs_download_table</code></p>
 </div>
 
 

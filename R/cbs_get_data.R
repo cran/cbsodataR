@@ -1,8 +1,8 @@
 #' Get data from Statistics Netherlands (CBS)
 #' 
 #' Retrieves data from a table of Statistics Netherlands. A list of available tables
-#' can be retrieved with [cbs_get_toc()]. Use the `Identifier` column of 
-#' `cbs_get_toc` as `id` in `cbs_get_data` and `cbs_get_meta`.
+#' can be retrieved with [cbs_get_datasets()]. Use the `Identifier` column of 
+#' `cbs_get_datssets` as `id` in `cbs_get_data` and `cbs_get_meta`.
 #' 
 #' To reduce the download time, optionaly the data can be filtered on category values: 
 #' for large tables (> 100k records) this is a wise thing to do.
@@ -27,8 +27,9 @@
 #' 
 #' @note All data are downloaded using [cbs_download_table()]
 #' 
-#' @param id Identifier of table, can be found in [cbs_get_toc()]
-#' @param catalog catalog id, can be retrieved with [cbs_get_datasets()]
+#' @param id Identifier of table, can be found in [cbs_get_datasets()]
+#' @param catalog catalog id, can be retrieved with [cbs_get_datasets()] 
+#' (set `catalog=NULL` to see all catalogs)
 #' @param ... optional filter statements, see details.
 #' @param select `character` optional, columns to select
 #' @param add_column_labels Should column titles be added as a label (TRUE) which are visible in `View`
@@ -45,6 +46,7 @@
 #' @seealso [cbs_get_meta()], [cbs_download_data()]
 #' @family data retrieval
 #' @family query
+#' @inheritSection cbsodataR-package Copyright use
 #' @example ./example/query.R
 cbs_get_data <- function( id
                         , ...
@@ -85,6 +87,11 @@ cbs_get_data <- function( id
   is_time <- meta$DataProperties$Key[meta$DataProperties$Type == "TimeDimension"]
   if (length(is_time)){
     attr(data[[is_time]], "is_time") <- TRUE
+  }
+  
+  is_region <- meta$DataProperties$Key[meta$DataProperties$Type == "GeoDimension"]
+  if (length(is_region)){
+    attr(data[[is_region]], "is_region") <- TRUE
   }
   
   class(data) <- c('tbl_df', 'tbl','data.frame')

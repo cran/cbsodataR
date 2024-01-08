@@ -1,3 +1,17 @@
+# cbsodataR 1.0.1
+
+* fixed example in `cbs_get_catalogs`, which failed when catalog was temporarily 
+not available.
+
+* bumped version number to 1.0.0 (it's very stable)
+
+* added functions for using maps with `cbsodataR`: `cbs_get_maps`, 
+`cbs_join_sf_with_data` and`cbs_get_sf`.
+
+# version 0.5.2
+
+*  fixed issue #29 with retrieving from dataderden.cbs.nl, thanks to Mirjam Zengers for reporting
+
 # version 0.5.0
 
 * added `cbs_search` facility, to search for publications containing words.
@@ -12,11 +26,7 @@
 # version 0.4.2
 
 * added weeks to cbs_add_date_column, issue #25, thanks to @RichardFromHolland 
-
-# version 0.4.1.9000
-
 * added warnings when filter selection contains invalid keys.
-
 * `<column> = has_substring(<ss>) | "value"` is now allowed.
 
 # version 0.4.1

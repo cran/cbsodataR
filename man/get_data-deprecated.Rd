@@ -15,7 +15,7 @@ get_data(
 )
 }
 \arguments{
-\item{id}{Identifier of table, can be found in \code{\link[=cbs_get_toc]{cbs_get_toc()}}}
+\item{id}{Identifier of table, can be found in \code{\link[=cbs_get_datasets]{cbs_get_datasets()}}}
 
 \item{...}{optional filter statements, see details.}
 
@@ -57,6 +57,17 @@ By default the columns will be converted to their type (\code{typed=TRUE}).
 CBS uses multiple types of missing (unknown, surpressed, not measured, missing): users
 wanting all these nuances can use \code{typed=FALSE} which results in character columns.
 }
+\note{
+All data are downloaded using \code{\link[=cbs_download_table]{cbs_download_table()}}
+}
+\section{Copyright use}{
+
+The content of CBS opendata is subject to Creative Commons Attribution (CC BY 4.0).
+This means that the re-use of the content is permitted, provided Statistics
+Netherlands is cited as the source. For more information see:
+\url{https://www.cbs.nl/en-gb/about-us/website/copyright}
+}
+
 \examples{
 \dontrun{
 cbs_get_data( id      = "7196ENG"      # table id
