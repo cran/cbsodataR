@@ -21,8 +21,9 @@ extract the id of a cbs table from the statline url
 Other data retrieval: 
 \code{\link{cbs_add_date_column}()},
 \code{\link{cbs_add_label_columns}()},
+\code{\link{cbs_add_unit_column}()},
 \code{\link{cbs_download_data}()},
-\code{\link{cbs_get_data_from_link}()},
-\code{\link{cbs_get_data}()}
+\code{\link{cbs_get_data}()},
+\code{\link{cbs_get_data_from_link}()}
 }
 \concept{data retrieval}

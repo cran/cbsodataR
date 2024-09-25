@@ -71,6 +71,12 @@ cbs_get_data <- function( id
                         )
   dimnames <- names(meta)[names(meta) %in% meta$DataProperties$Key]
   colClasses <- sapply(dimnames, function(x){"character"})
+  
+  if (!isTRUE(typed)){
+    # read in all columns as characters
+    colClasses <- "character"
+  }
+  
   data <- read.csv( file.path(dir, "data.csv")
                   , colClasses = colClasses
                   , strip.white = TRUE)
@@ -82,6 +88,7 @@ cbs_get_data <- function( id
 
   if (add_column_labels){
     data <- add_var_labels(data, meta)
+    data <- add_var_units(data, meta)
   }
   
   is_time <- meta$DataProperties$Key[meta$DataProperties$Type == "TimeDimension"]

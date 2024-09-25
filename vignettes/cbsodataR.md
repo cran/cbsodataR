@@ -23,7 +23,7 @@ datasets |>
   select(Identifier, ShortTitle) 
 ```
 
-    ## # A tibble: 937 × 2
+    ## # A tibble: 1,005 × 2
     ##    Identifier ShortTitle                             
     ##    <chr>      <chr>                                  
     ##  1 80783eng   Agriculture; general farm type, region 
@@ -36,7 +36,7 @@ datasets |>
     ##  8 84312ENG   Caribbean NL; students MBO             
     ##  9 84732ENG   Caribbean NL; pupils and students      
     ## 10 81154eng   Caribbean NL; electricity and water    
-    ## # ℹ 927 more rows
+    ## # ℹ 995 more rows
 
 ## Search for tables
 
@@ -50,7 +50,7 @@ toc_apples[, c("Identifier", "ShortTitle", "score")]
     ## # A tibble: 1 × 3
     ##   Identifier ShortTitle                          score
     ##   <chr>      <chr>                               <dbl>
-    ## 1 71509ENG   Yield apples and pears, 1997 - 2017  2.62
+    ## 1 71509ENG   Yield apples and pears, 1997 - 2017  2.64
 
 ## Other catalogs
 
@@ -79,19 +79,18 @@ apples
     ##   Periods: 'Periods' 
     ## 
     ## Retrieve a default data selection with:
-    ##  cbs_get_data(id = "71509ENG", FruitFarmingRegions = c("1", "2", 
-    ## "4", "3", "5"), Periods = c("1997JJ00", "2012JJ00", "2013JJ00", 
-    ## "2016JJ00"), select = c("FruitFarmingRegions", "Periods", "TotalAppleVarieties_1", 
-    ## "CoxSOrangePippin_2", "DelbarestivaleDelcorf_3", "Elstar_4", 
-    ## "GoldenDelicious_5", "Jonagold_6", "Jonagored_7", "RodeBoskoopRennetApple_10", 
-    ## "OtherAppleVarieties_12", "TotalPearVarieties_13", "Conference_15", 
-    ## "DoyenneDuComice_16", "CookingPears_17", "TriompheDeVienne_18", 
+    ##  cbs_get_data(id = "71509ENG", select = c("FruitFarmingRegions", 
+    ## "Periods", "TotalAppleVarieties_1", "CoxSOrangePippin_2", "DelbarestivaleDelcorf_3", 
+    ## "Elstar_4", "GoldenDelicious_5", "Jonagold_6", "Jonagored_7", 
+    ## "RodeBoskoopRennetApple_10", "OtherAppleVarieties_12", "TotalPearVarieties_13", 
+    ## "Conference_15", "DoyenneDuComice_16", "CookingPears_17", "TriompheDeVienne_18", 
     ## "OtherPearVarieties_19", "TotalAppleVarieties_20", "CoxSOrangePippin_21", 
     ## "DelbarestivaleDelcorf_22", "Elstar_23", "GoldenDelicious_24", 
     ## "Jonagold_25", "Jonagored_26", "RodeBoskoopRennetApple_29", "OtherAppleVarieties_31", 
     ## "TotalPearVarieties_32", "Conference_34", "DoyenneDuComice_35", 
     ## "CookingPears_36", "TriompheDeVienne_37", "OtherPearVarieties_38"
-    ## ))
+    ## ), FruitFarmingRegions = c("1", "2", "4", "3", "5"), Periods = c("1997JJ00", 
+    ## "2012JJ00", "2013JJ00", "2016JJ00"))
 
 The meta object contains all metadata properties of cbsodata (see the
 [original
@@ -143,17 +142,17 @@ cbs_get_data_from_link("https://opendata.cbs.nl/dataportaal/#/CBS/en/dataset/715
 ```
 
     ## Executing:
-    ## cbs_get_data(id = "71509ENG", FruitFarmingRegions = c("1", "2", "3", "4", "5"), Periods = c("1997JJ00", "2012JJ00", "2013JJ00", "2016JJ00"), select = c("FruitFarmingRegions", "Periods", "TotalAppleVarieties_1", "CoxSOrangePippin_2", "DelbarestivaleDelcorf_3", "Elstar_4", "GoldenDelicious_5", "Jonagold_6", "Jonagored_7", "Junami_8", "Kanzi_9", "RodeBoskoopRennetApple_10", "Rubens_11", "OtherAppleVarieties_12", "TotalAppleVarieties_20", "CoxSOrangePippin_21", "DelbarestivaleDelcorf_22", "Elstar_23", "GoldenDelicious_24", "Jonagold_25", "Jonagored_26", "Junami_27", "Kanzi_28", "RodeBoskoopRennetApple_29", "Rubens_30", "OtherAppleVarieties_31"), base_url = "http://opendata.cbs.nl")
+    ## cbs_get_data(id = "71509ENG", select = c("FruitFarmingRegions", "Periods", "TotalAppleVarieties_1", "CoxSOrangePippin_2", "DelbarestivaleDelcorf_3", "Elstar_4", "GoldenDelicious_5", "Jonagold_6", "Jonagored_7", "Junami_8", "Kanzi_9", "RodeBoskoopRennetApple_10", "Rubens_11", "OtherAppleVarieties_12", "TotalAppleVarieties_20", "CoxSOrangePippin_21", "DelbarestivaleDelcorf_22", "Elstar_23", "GoldenDelicious_24", "Jonagold_25", "Jonagored_26", "Junami_27", "Kanzi_28", "RodeBoskoopRennetApple_29", "Rubens_30", "OtherAppleVarieties_31"), FruitFarmingRegions = c("1", "2", "3", "4", "5"), Periods = c("1997JJ00", "2012JJ00", "2013JJ00", "2016JJ00"), deeplink = "https://opendata.cbs.nl/dataportaal/#/CBS/en/dataset/71509ENG/table?dl=193CB",     base_url = "http://opendata.cbs.nl")
 
     ## # A tibble: 6 × 4
-    ##   FruitFarmingRegions Periods  TotalAppleVarieties_1 CoxSOrangePippin_2
-    ##   <chr>               <chr>                    <int>              <int>
-    ## 1 1                   1997JJ00                   420                 43
-    ## 2 1                   2012JJ00                   282                  3
-    ## 3 1                   2013JJ00                   314                  4
-    ## 4 1                   2016JJ00                   317                  2
-    ## 5 2                   1997JJ00                    86                 10
-    ## 6 2                   2012JJ00                    34                  0
+    ##      ID FruitFarmingRegions Periods  TotalAppleVarieties_1
+    ##   <int> <chr>               <chr>                    <int>
+    ## 1     0 1                   1997JJ00                   420
+    ## 2    15 1                   2012JJ00                   282
+    ## 3    16 1                   2013JJ00                   314
+    ## 4    19 1                   2016JJ00                   317
+    ## 5    21 2                   1997JJ00                    86
+    ## 6    36 2                   2012JJ00                    34
 
 ### Adding category labels
 
@@ -178,7 +177,7 @@ cbs_get_data('71509ENG') |>
     ## 5 1                   Total Netherlands         2001JJ00 2001         
     ## 6 1                   Total Netherlands         2002JJ00 2002
 
-### Adding Date column
+### Adding a Date column
 
 The period/time columns of Statistics Netherlands (CBS) contain coded
 time periods: e.g. 2018JJ00 (i.e. 2018), 2018KW03 (i.e. 2018 Q3),
@@ -221,6 +220,29 @@ cbs_get_data('71509ENG') |>
     ## 4 2000JJ00            2000 Y           
     ## 5 2001JJ00            2001 Y           
     ## 6 2002JJ00            2002 Y
+
+### Adding unit columns
+
+Each topic in the CBS data can have a unit, e.g. “%” or “mln kg”. Using
+`cbs_add_unit_column` for each (specified) topic a unit column will be
+added.
+
+``` r
+cbs_get_data('71509ENG') |>
+  cbs_add_unit_column() |> 
+  subset(,1:4) |>
+  head()
+```
+
+    ## # A tibble: 6 × 4
+    ##   FruitFarmingRegions Periods  TotalAppleVarieties_1 TotalAppleVarieties_1_unit
+    ##   <chr>               <chr>                    <int> <chr>                     
+    ## 1 1                   1997JJ00                   420 mln kg                    
+    ## 2 1                   1998JJ00                   518 mln kg                    
+    ## 3 1                   1999JJ00                   568 mln kg                    
+    ## 4 1                   2000JJ00                   461 mln kg                    
+    ## 5 1                   2001JJ00                   408 mln kg                    
+    ## 6 1                   2002JJ00                   354 mln kg
 
 ## Select and filter
 
