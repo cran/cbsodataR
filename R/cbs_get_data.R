@@ -39,7 +39,8 @@
 #' @param verbose Print extra messages what is happening.
 #' @param include_ID Should the data include the ID column for the rows?
 #' @param base_url optionally specify a different server. Useful for
-#' third party data services implementing the same protocol.
+#' third party data services implementing the same protocol, see details.
+#' @inheritSection cbsodataR-package Specify different server
 #' @return `data.frame` with the requested data. Note that a csv copy of
 #'  the data is stored in `dir`.
 #' @export
@@ -92,13 +93,13 @@ cbs_get_data <- function( id
   }
   
   is_time <- meta$DataProperties$Key[meta$DataProperties$Type == "TimeDimension"]
-  if (length(is_time)){
-    attr(data[[is_time]], "is_time") <- TRUE
+  for (col in is_time) {
+    attr(data[[col]], "is_time") <- TRUE
   }
   
   is_region <- meta$DataProperties$Key[meta$DataProperties$Type == "GeoDimension"]
-  if (length(is_region)){
-    attr(data[[is_region]], "is_region") <- TRUE
+  for (col in is_region) {
+    attr(data[[col]], "is_region") <- TRUE
   }
   
   class(data) <- c('tbl_df', 'tbl','data.frame')

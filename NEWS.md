@@ -1,3 +1,12 @@
+# cbsodataR 1.2.1
+
+* Fixed an issue with tables that had multiple time or region columns, thanks
+to @djvanderlaan for reporting and solving (issue #41).
+
+# cbsodataR 1.2.0
+
+* Added options to change the `API` and `BULK` urls, thanks to Hans Vreeken 
+
 # cbsodataR 1.1.0
 
 * Added `cbs_add_unit_column` to add unit columns to the data set, thanks to Marieke Rensman en Martin van Elp for the suggestion
